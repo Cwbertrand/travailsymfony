@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EmployerController!{% endblock %}
+
+{% block body %}
+    <div class="container py-5">
+        {% if edit %}
+            <h1>Edit l'Employe</h1>
+        {% else %}
+            <h1>Ajouter une Employe</h1>
+        {% endif %}
+
+        {{ form_start(form) }}
+            <div class="d-flex" style="width: 100vw !important;">
+                {{ form_row(form.nom) }}
+
+            <span class="me-4"></span>{{ form_row(form.prenom) }}
+            </div>
+            
+            {{ form_row(form.dateNaissance) }}
+            {{ form_row(form.dateEmbauche) }}
+            {{ form_row(form.entreprise) }}
+            {{ form_row(form.submit) }}
+        {{ form_end(form) }}
+        {# {{form(form)}} #}
+    </div>
+{% endblock %}

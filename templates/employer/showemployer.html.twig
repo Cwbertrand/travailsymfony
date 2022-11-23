@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EmployerController!{% endblock %}
+
+{% block body %}
+    <div class="container py-5">
+        <div class="card">
+            <div class="card-header">
+                <strong>Employe: {{detailemployer.nom}} {{detailemployer.prenom}}</strong>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Entreprise: <strong><a href="{{ path ('show_enterprise', {'id': detailemployer.entreprise.id})}}">{{detailemployer.entreprise.raisonsociale}}</a></strong></p>
+                <p class="card-text">Date d'embauche: <strong>{{detailemployer.dateEmbauche|date('d-m-Y')}}</strong></p>
+                <p class="card-text">Date de naissance: <strong>{{detailemployer.dateNaissance|date('d-m-Y')}}</strong> ({{detailemployer.getAge}} ans)</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Enterprise Controller!{% endblock %}
+
+{% block body %}
+    <div class="container py-5">
+        <a href="{{path ('add_enterprise')}}" class="btn btn-primary">Add Entreprise</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Index</th>
+                    <th scope="col">Entreprise</th>
+                    <th scope="col">Date de Creation</th>
+                    <th scope="col">Adresse</th>
+                    <th scope="col">Code Postale</th>
+                    <th scope="col">Ville</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entreprise in entreprises %}
+                <tr>
+                    <th scope="row">{{entreprise.id}}</th>
+                    <td>
+                        <a class="btn btn-warning" href="{{ path ('edit_enterprise', {'id': entreprise.id })}}">Edit</a>
+                        <a href="{{ path ('show_enterprise', {'id': entreprise.id })}}">{{entreprise.raisonsociale}}</a>
+                        
+                    </td>
+                    <td>{{entreprise.datecreation|date('d-m-Y')}}</td>
+                    <td>{{entreprise.adresse}}</td>
+                    <td>{{entreprise.codepostale}}</td>
+                    <td>{{entreprise.ville}}
+                        <a class="mx-3 btn btn-danger" href="{{ path('delete_entreprise', {'id': entreprise.id })}}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Detaille d'Enterprise!{% endblock %}
+
+{% block body %}
+    <div class="container py-5">
+        <div class="card">
+            <div class="card-header">
+                <strong>Entreprise: {{detailentreprise.raisonsociale}}</strong>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Siret: <strong>{{detailentreprise.siret}}</strong></p>
+                <p class="card-text">Date de création: <strong>{{detailentreprise.datecreation|date("m/d/Y")}}</strong></p>
+                <p class="card-text">Date de création: <strong>{{detailentreprise.FullAddress}}</strong></p>
+            </div>
+        </div>
+
+        <div class="container py-5">
+            <h4>Liste d'employe</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Nom & Prénom</th>
+                        <th scope="col">Date Embauche</th>
+                        <th scope="col">d'Age</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if detailentreprise.employes|length == 0 %}
+                        <p>Pas d'employe dans cette entreprise</p>
+                    {% else %}
+                        {% for employer in detailentreprise.employes %}
+                        <tr>
+                            <td><a href="{{path('show_employer', {'id': employer.id})}}">{{employer.nom}} {{employer.prenom}}</a></td>
+                            <td>{{employer.dateEmbauche|date('d-m-Y')}}</td>
+                            <td>{{employer.Age}} ans</td>
+                        </tr>
+                        {% endfor %}
+                    {% endif %}
+                    
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
